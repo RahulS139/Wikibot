@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiBot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid #007BFF;
+            padding: 10px;
+            border-radius: 10px;
+            animation: blink 2s infinite; /* Blink animation */
+        }
+        @keyframes blink {
+            0%, 100% {
+                color: #fff; /* Start and end with white */
+            }
+            50% {
+                color: #007BFF; /* Midway change to blue */
+            }
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 300px;
+            color: #000;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+        .options p {
+            margin: 5px 10px;
+        }
+        .options label {
+            margin: 0 10px;
+        }
+        .result-container {
+            width: 80%;
+            max-width: 800px;
+            max-height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #333;
+            overflow-y: auto;
+        }
+        .result {
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+        .credits {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-align: right;
+            color: #fff;
+            z-index: 1000;
+            max-width: 200px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .credits a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .credits a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>WIKIBOT</h1>
+    <div class="search-container">
+        <form id="search-form" action="/wikibot" method="post">
+            <div class="search-bar">
+                <input type="text" id="search" name="search" placeholder="Search Wikipedia..." required>
+                <button type="submit" id="search-btn">Search</button>
+            </div>
+            <div class="options">
+                <p>Description type:</p>
+                <label><input type="radio" name="length" value="short" checked> Small</label>
+                <label><input type="radio" name="length" value="moderate"> Mid</label>
+                <label><input type="radio" name="length" value="long"> Large</label>
+            </div>
+        </form>
+    </div>
+    <div class="result-container">
+        <div class="result">
+            {% if result %}
+                <h2>Results:</h2>
+                <p>{{ result }}</p>
+            {% endif %}
+            {% if error %}
+                <h2>Error:</h2>
+                <p>{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="credits">
+        <p>Developed by:</p>
+        <p>
+            <a href="https://www.linkedin.com/in/rahulsinghaind/" target="_blank">Rahul Singha</a><br>
+            <a href="https://www.linkedin.com/in/subhradip-biswas-211992216/" target="_blank">Subhradip Biswas</a><br>
+            <a href="https://www.linkedin.com/in/riya-talukder/" target="_blank">Riya Talukder</a>
+        </p>
+    </div>
+</body>
+</html>
